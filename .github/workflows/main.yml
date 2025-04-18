@@ -1,0 +1,29 @@
+name: Validate OS
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  validate-os:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Show OS Info
+        run: |
+          echo "Running on OS:"
+          uname -a || ver
+
+      - name: Print Environment Info
+        run: |
+          echo "Operating System: $RUNNER_OS"
+          echo "Home directory: $HOME"
