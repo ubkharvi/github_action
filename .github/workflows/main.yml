@@ -1,17 +1,18 @@
 name: Validate OS
 
 on:
-  inputs:
-    os:
-      description: 'Operating System'
-      required: true
-      default: 'ubuntu-latest'
-      type: choice
-      options:
-        - ubuntu-latest
-        - windows-latest
-        - macos-latest
-        - ubuntu-22.04
+  workflow_dispatch:
+    inputs:
+      os:
+        description: 'Operating System'
+        required: true
+        default: 'ubuntu-latest'
+        type: choice
+        options:
+          - ubuntu-latest
+          - windows-latest
+          - macos-latest
+          - ubuntu-22.04
 
 jobs:
   validate-os:
