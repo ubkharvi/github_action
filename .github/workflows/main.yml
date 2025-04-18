@@ -1,19 +1,21 @@
 name: Validate OS
 
 on:
-  workflow_dispatch:
-  push:
-    branches:
-      - main
-  pull_request:
+  inputs:
+    os:
+      description: 'Operating System'
+      required: true
+      default: 'ubuntu-latest'
+      type: choice
+      options:
+        - ubuntu-latest
+        - windows-latest
+        - macos-latest
+        - ubuntu-22.04
 
 jobs:
   validate-os:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
-
+    runs-on: ${{ inputs.os }}
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
