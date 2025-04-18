@@ -30,3 +30,15 @@ jobs:
         run: |
           echo "Operating System: $RUNNER_OS"
           echo "Home directory: $HOME"
+  build:
+    runs-on: ${{ inputs.os }}
+    needs: validate-os
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Build Project
+        run: |
+          echo "Building project on OS:"
+          uname -a || ver
+          echo "Build completed successfully."       
